@@ -21,7 +21,7 @@ pub fn gen_split_first() -> TokenStream {
     for i in 0usize..32usize {
         let impl_generics = (0..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
         let ty_generics = (0..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
-        let ty_left = Ident::new(&format!("T0"), Span::call_site());
+        let ty_left = Ident::new(&"T0".to_string(), Span::call_site());
         let ty_right = (1..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
         let right = (1..=i).map(|j| LitInt::new(&j.to_string(), Span::call_site())).map(|j| quote! { self.#j });
 
