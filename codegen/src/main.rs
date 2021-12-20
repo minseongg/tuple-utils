@@ -17,5 +17,10 @@ fn main() -> Result<(), ::std::io::Error> {
     writeln!(&mut file, "{}", split::gen_split_first())?;
     writeln!(&mut file, "{}", split::gen_split_last())?;
 
+    file = fs::File::create(path_dir.join("push.rs"))?;
+    writeln!(&mut file, "#![allow(clippy::all)]")?;
+    writeln!(&mut file, "{}", push::gen_push_front())?;
+    writeln!(&mut file, "{}", push::gen_push_back())?;
+
     Ok(())
 }
