@@ -23,7 +23,9 @@ pub fn gen_split_first() -> TokenStream {
         let ty_generics = (0..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
         let ty_left = Ident::new(&"T0".to_string(), Span::call_site());
         let ty_right = (1..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
-        let right = (1..=i).map(|j| LitInt::new(&j.to_string(), Span::call_site())).map(|j| quote! { self.#j });
+        let right = (1..=i)
+            .map(|j| LitInt::new(&j.to_string(), Span::call_site()))
+            .map(|j| quote! { self.#j });
 
         let trait_impl = quote! {
             impl<#(#impl_generics,)*> SplitFirst for (#(#ty_generics,)*) {
@@ -67,7 +69,9 @@ pub fn gen_split_last() -> TokenStream {
         let ty_generics = (0..=i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
         let ty_left = (0..i).map(|j| Ident::new(&format!("T{j}"), Span::call_site()));
         let ty_right = Ident::new(&format!("T{i}"), Span::call_site());
-        let left = (0..i).map(|j| LitInt::new(&j.to_string(), Span::call_site())).map(|j| quote! { self.#j });
+        let left = (0..i)
+            .map(|j| LitInt::new(&j.to_string(), Span::call_site()))
+            .map(|j| quote! { self.#j });
         let right = {
             let j = LitInt::new(&i.to_string(), Span::call_site());
             quote! { self.#j }
