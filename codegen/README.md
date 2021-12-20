@@ -15,6 +15,7 @@ This will generate `build/` directory which contains trait implementations.
 ```
 build
 ├── arity.rs
+├── push.rs
 ├── split.rs
 └── ... (TODO)
 ```
